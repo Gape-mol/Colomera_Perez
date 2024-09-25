@@ -15,3 +15,6 @@ Errores en el codigo::
 1- todo estaba dentro del main.
 2- variables poco descriptivas como a,c,d,mmm.
 3- errores logicos dentro de bucles y/o condicionales
+4-Nombres de metodos poco descriptibos como opa
+5- no se utiliza el mismo tipo de variable al declarr la matriz de registro
+
