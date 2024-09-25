@@ -63,24 +63,9 @@ public class Registro {
                 }
                 break;
             case 2:
-                int mayoresDeEdad = 0;
-                for (String persona : registro) {
-                    if (Integer.parseInt(persona[2]) >= 18) {
-                        mayoresDeEdad++;
-                        System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
-                    }
-                }
-                System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
+                opcion2();
             case 3:
-                int menoresDeEdad = 0;
-                for (String persona : registro) {
-                    if (Integer.parseInt(persona[2]) < 18){
-                        menoresDeEdad++;
-                        System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
-                    }
-                }
-                System.out.println("Hay " + menoresDeEdad + " menores de edad.");
-                break;
+                opcion3();
             case 4:
                 int mmmm = 0;//mmm no es una variable que describa lo que es
                 for (double [] persona : registro) {
@@ -114,7 +99,30 @@ public class Registro {
 
         }
         //}while (a == 6);// como se va a cumplir que a sea = 6 si se supone que el a es para la opciones
-    public static int obtenerUltimoEspacio(double [][] registro) {
+
+    public static void opcion2 (String[] registro){
+            int mayoresDeEdad = 0;
+            for (String persona : registro) {
+                if (Integer.parseInt(persona[2]) >= 18) {
+                    mayoresDeEdad++;
+                    System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
+                }
+            }
+            System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
+        }
+
+    public static void opcion3(){
+            int menoresDeEdad = 0;
+            for (String persona : registro) {
+                if (Integer.parseInt(persona[2]) < 18){
+                    menoresDeEdad++;
+                    System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
+                }
+            }
+            System.out.println("Hay " + menoresDeEdad + " menores de edad.");
+
+        }
+    public static int obtenerUltimoEspacio(double [] registro) {
         return registro.length - opa(registro);
     }
 
