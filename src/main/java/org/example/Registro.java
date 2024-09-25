@@ -39,9 +39,14 @@ public class Registro {
 
     public static void menu(String[][] registro) {
         int a;
-        printMenu();
-        a = leerOpcion();
-        seleccionarOpcion(a, registro);
+        while (true) {
+            printMenu();
+            a = leerOpcion();
+            if (a == 6) {
+                break;
+            }
+            seleccionarOpcion(a, registro);
+        }
     }
 
     public static void seleccionarOpcion(int a, String[][] registro) {
@@ -190,9 +195,11 @@ public class Registro {
     public static void opcion2 (String[][] registro){
         int mayoresDeEdad = 0;
         for (String[] persona : registro) {
-            if (Integer.parseInt(persona[2]) >= 18) {
-                mayoresDeEdad++;
-                System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
+            if (persona[0] != null) {
+                if (Integer.parseInt(persona[2]) >= 18) {
+                    mayoresDeEdad++;
+                    System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
+                }
             }
         }
         System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
@@ -201,9 +208,11 @@ public class Registro {
     public static void opcion3(String [][] registro){
         int menoresDeEdad = 0;
         for (String[] persona : registro) {
-            if (Integer.parseInt(persona[2]) < 18){
-                menoresDeEdad++;
-                System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
+            if (persona[0] != null) {
+                if (Integer.parseInt(persona[2]) < 18) {
+                    menoresDeEdad++;
+                    System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
+                }
             }
         }
         System.out.println("Hay " + menoresDeEdad + " menores de edad.");
