@@ -45,23 +45,23 @@ public class Registro {
     }
 
     public static void seleccionarOpcion(int a, String[][] registro) {
-            if (a == 1) {
-                String nombre = leerNombre();
-                String estadoCivil = leerEstadoCivil();
-                int edad = leerEdad();
-                agregarPersona(registro, nombre, estadoCivil, edad);
-            } else if (a == 2) {
-                System.out.println("Work in Progress");
-            } else if (a == 3) {
-                System.out.println("Work in Progress");
-            } else if (a == 4) {
-                contarPersonasDeTerceraEdad(registro);
-            } else if (a == 5) {
-                mostrarCantidadPersonasSegunEstadoCivil(registro);
-            } else if (a == 6) {
-                System.out.println("Programa finalizado");
-            }
+        if (a == 1) {
+            String nombre = leerNombre();
+            String estadoCivil = leerEstadoCivil();
+            int edad = leerEdad();
+            agregarPersona(registro, nombre, estadoCivil, edad);
+        } else if (a == 2) {
+            opcion2();
+        } else if (a == 3) {
+            opcion3();
+        } else if (a == 4) {
+            contarPersonasDeTerceraEdad(registro);
+        } else if (a == 5) {
+            mostrarCantidadPersonasSegunEstadoCivil(registro);
+        } else if (a == 6) {
+            System.out.println("Programa finalizado");
         }
+    }
 
     public static void agregarPersona(String[][] registro, String nombre, String estadoCivil, int edad) {
         if (hayCupo(registro)) {
@@ -176,5 +176,28 @@ public class Registro {
             }
         }
         return 0;
+    }
+
+    public static void opcion2 (){
+        int mayoresDeEdad = 0;
+        for (String persona : registro) {
+            if (Integer.parseInt(persona[2]) >= 18) {
+                mayoresDeEdad++;
+                System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
+            }
+        }
+        System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
+    }
+
+    public static void opcion3(){
+        int menoresDeEdad = 0;
+        for (String persona : registro) {
+            if (Integer.parseInt(persona[2]) < 18){
+                menoresDeEdad++;
+                System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
+            }
+        }
+        System.out.println("Hay " + menoresDeEdad + " menores de edad.");
+
     }
 }
