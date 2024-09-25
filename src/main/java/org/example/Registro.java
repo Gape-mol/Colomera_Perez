@@ -45,21 +45,30 @@ public class Registro {
     }
 
     public static void seleccionarOpcion(int a, String[][] registro) {
-        if (a == 1) {
-            String nombre = leerNombre();
-            String estadoCivil = leerEstadoCivil();
-            int edad = leerEdad();
-            agregarPersona(registro, nombre, estadoCivil, edad);
-        } else if (a == 2) {
-            opcion2();
-        } else if (a == 3) {
-            opcion3();
-        } else if (a == 4) {
-            contarPersonasDeTerceraEdad(registro);
-        } else if (a == 5) {
-            mostrarCantidadPersonasSegunEstadoCivil(registro);
-        } else if (a == 6) {
-            System.out.println("Programa finalizado");
+        switch (a){
+            case 1:
+                String nombre = leerNombre();
+                String estadoCivil = leerEstadoCivil();
+                int edad = leerEdad();
+                agregarPersona(registro, nombre, estadoCivil, edad);
+                break;
+            case 2:
+                opcion2(registro);
+                break;
+            case 3:
+                opcion3(registro);
+                break;
+            case 4:
+                contarPersonasDeTerceraEdad(registro);
+                break;
+            case 5:
+                mostrarCantidadPersonasSegunEstadoCivil(registro);
+                break;
+            case 6:
+                System.out.println("Programa finalizado");
+                break;
+            default:
+                System.err.println("Opción inválida");
         }
     }
 
@@ -178,9 +187,9 @@ public class Registro {
         return 0;
     }
 
-    public static void opcion2 (){
+    public static void opcion2 (String[][] registro){
         int mayoresDeEdad = 0;
-        for (String persona : registro) {
+        for (String[] persona : registro) {
             if (Integer.parseInt(persona[2]) >= 18) {
                 mayoresDeEdad++;
                 System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
@@ -189,9 +198,9 @@ public class Registro {
         System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
     }
 
-    public static void opcion3(){
+    public static void opcion3(String [][] registro){
         int menoresDeEdad = 0;
-        for (String persona : registro) {
+        for (String[] persona : registro) {
             if (Integer.parseInt(persona[2]) < 18){
                 menoresDeEdad++;
                 System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
