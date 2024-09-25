@@ -43,64 +43,29 @@ public class Registro {
         opcion = leerOpcion();
         opciones(opcion, registro);
     }
-    public static void opciones (int opcion, String[] registro ) {
+    public static void opciones (int opcion, String[][] registro ) {
         switch (opcion) {
             case 1:
-                if(hayCupo(registro)) {
-                    int indiceDisponible = obtenerUltimoEspacio(registro);
-                    String nombre;
-                    String Estadocivil;
-                    String edad;
-                    nombre = new Scanner(System.in).nextLine();
-                    Estadocivil = new Scanner(System.in).nextLine();
-                    edad = new Scanner(System.in).nextLine();// cambio del tipo de variable que es la edad ahora es una string
-                    registro[indiceDisponible][0] = nombre;
-                    registro[indiceDisponible][1] = Estadocivil;
-                    registro[indiceDisponible][2] = edad;
-                    System.out.println("Persona agregada.");
-                } else {
-                    System.out.println("No hay cupo.");
-                }
-                break;
+                System.out.println("a");
             case 2:
                 opcion2();
             case 3:
                 opcion3();
             case 4:
-                int mmmm = 0;//mmm no es una variable que describa lo que es
-                for (double [] persona : registro) {
-                    if (persona[2] >= 60 && persona[1].equals("casado/a")) {
-                        mmmm++;
-                    } else if(persona[2] >= 65 && persona[1].equals("soltero/a")) {
-                        mmmm++;
-                    }
-                }
-                System.out.println("Hay " + mmmm + " personas de tercera edad");
-                break;
+                System.out.println("a");
             case 5:
-                int c = 0;
-                int d = 0;
-                for(double[] persona : registro) {
-                    if(persona[1].equals("casado/a")) {
-                        c++;
-                    } else if(persona[1].equals("soltero/a")) {
-                        d++;
-                    }
-                }
-                System.out.println("Hay " + d + " casados/as.");
-                System.out.println("Hay " + c + " solteros/as.");
-                break;
+                System.out.println("a");
             case 6:
                 System.out.println("Programa finalizado");
 
                 break;
             default:
 
-
         }
+    }
         //}while (a == 6);// como se va a cumplir que a sea = 6 si se supone que el a es para la opciones
 
-    public static void opcion2 (String[] registro){
+    public static void opcion2 (){
             int mayoresDeEdad = 0;
             for (String persona : registro) {
                 if (Integer.parseInt(persona[2]) >= 18) {
