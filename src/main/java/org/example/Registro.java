@@ -45,23 +45,15 @@ public class Registro {
     }
 
     public static void seleccionarOpcion(int a, String[][] registro) {
-        {
             if (a == 1) {
-               agregarPersona(registro);
-                }
+                String nombre = leerNombre();
+                String estadoCivil = leerEstadoCivil();
+                int edad = leerEdad();
+                agregarPersona(registro, nombre, estadoCivil, edad);
             } else if (a == 2) {
-                int mayoresDeEdad = 0;
-                for (double[] persona : registro) {
-                    if (persona[2] >= 18) mayoresDeEdad++;
-                }
-                System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
+                System.out.println("Work in Progress");
             } else if (a == 3) {
-                int menoresDeEdad = 0;
-                int queSera = obtenerUltimoEspacio(registro);
-                for (int i = 0; i < queSera; i++) {
-                    if (registro[i][2] < 18) menoresDeEdad++;
-                }
-                System.out.println("Hay " + menoresDeEdad + " menores de edad.");
+                System.out.println("Work in Progress");
             } else if (a == 4) {
                 contarPersonasDeTerceraEdad(registro);
             } else if (a == 5) {
@@ -71,15 +63,13 @@ public class Registro {
             }
         }
 
-    public static void agregarPersona(String[][] registro) {
+    public static void agregarPersona(String[][] registro, String nombre, String estadoCivil, int edad) {
         if (hayCupo(registro)) {
             int indiceDisponible = obtenerUltimoEspacio(registro);
-            String nombre = leerNombre();
-            String Estadocivil = leerEstadoCivil();
-            String edad = String.valueOf(leerEdad());
+            String edadString = Integer.toString(edad);
             registro[indiceDisponible][0] = nombre;
-            registro[indiceDisponible][1] = Estadocivil;
-            registro[indiceDisponible][2] = edad;
+            registro[indiceDisponible][1] = estadoCivil;
+            registro[indiceDisponible][2] = edadString;
             System.out.println("Persona agregada.");
         } else {
             System.out.println("No hay cupo.");
@@ -101,7 +91,7 @@ public class Registro {
     }
 
     public static int leerEdad(){
-        int edad = 0;
+        int edad;
         while (true) {
             try {
                 System.out.print("Ingrese la edad: ");
@@ -141,25 +131,30 @@ public class Registro {
         }
     }
 
-    public static void contarPersonasDeTerceraEdad (String[][]registro){
+    public static int contarPersonasDeTerceraEdad (String[][]registro){
         int cantidadPersonasTerceraEdad = 0;
         for (String[] persona : registro) {
-            int edad = Integer.parseInt(persona[2]);
-            if (edad >= 60) {
-                cantidadPersonasTerceraEdad++;
+            if (persona[0] != null) {
+                int edad = Integer.parseInt(persona[2]);
+                if (edad >= 60) {
+                    cantidadPersonasTerceraEdad++;
+                }
             }
-            System.out.println("Hay " + cantidadPersonasTerceraEdad + " personas de tercera edad");
         }
+        System.out.println("Hay " + cantidadPersonasTerceraEdad + " personas de tercera edad");
+        return cantidadPersonasTerceraEdad;
     }
 
     public static void mostrarCantidadPersonasSegunEstadoCivil (String[][]registro){
         int solteros = 0;
         int casados = 0;
         for (String[] persona : registro) {
-            if (persona[1].equals("casado/a")) {
-                casados++;
-            } else if (persona[1].equals("soltero/a")) {
-                solteros++;
+            if (persona[0] != null) {
+                if (persona[1].equals("casado/a")) {
+                    casados++;
+                } else if (persona[1].equals("soltero/a")) {
+                    solteros++;
+                }
             }
         }
         System.out.println("Hay " + casados + " casados/as.");
@@ -176,7 +171,7 @@ public class Registro {
 
     public static int espaciosDisponibles(String [][] registro) {
         for(int i = 0; i < registro.length; i++) {
-            if(registro[i][0].isEmpty()){
+            if(registro[i][0] == null) {
                 return registro.length - i;
             }
         }
