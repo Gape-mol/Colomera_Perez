@@ -64,19 +64,20 @@ public class Registro {
                 break;
             case 2:
                 int mayoresDeEdad = 0;
-                for (String [] persona : registro) {
-                    if (persona[2] >= 18){//no habia nada dentro del if
-                        System.out.println("Personas mayores de edad" + persona[2]);
-
+                for (String persona : registro) {
+                    if (Integer.parseInt(persona[2]) >= 18) {
+                        mayoresDeEdad++;
+                        System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
                     }
                 }
                 System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
-                break;
             case 3:
                 int menoresDeEdad = 0;
-                int queSera = obtenerUltimoEspacio(registro);
-                for (int i = 0; i < queSera; i++) {
-                    if (registro[i][2] < 18) menoresDeEdad++;
+                for (String persona : registro) {
+                    if (Integer.parseInt(persona[2]) < 18){
+                        menoresDeEdad++;
+                        System.out.println("Persona mayor de edad: " + persona[0] + " " + persona[1]);
+                    }
                 }
                 System.out.println("Hay " + menoresDeEdad + " menores de edad.");
                 break;
