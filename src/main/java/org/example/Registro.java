@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class Registro {
     public static void main(String[] args) {
-        double [][] registro = new double[50][3];//cambio del tipo de variable de double a string
+        String[][] registro = new String[50][3];
+        menu(registro);
     }
 
-    int a = -1;
-        do {
+    public static void printMenu() {
         System.out.println("""
                 Menú
                 1) Agregar persona.
@@ -19,111 +19,100 @@ public class Registro {
                 5) Mostrar la cantidad de personas según estado civil (Soltero/a - Casado/a).
                 6)Salir.
                 """);
+    }
+
+    public static int leerOpcion() {
+        int a = -1;
         do {
             try {
+                System.out.print("Ingrese una opción: ");
                 a = new Scanner(System.in).nextInt();
+                if (a < 0 || a > 6) {
+                    System.err.println("Opción inválida");
+                }
             } catch (InputMismatchException e) {
                 System.err.println("Opción inválida");
             }
-        }while (a > 0 || a < 6);
-        static void opcionDePelea(int opcion) {
-            switch (opcion) {
-                case 1:
+        } while (a < 0 || a > 6);
+        return a;
+    }
 
-                    break;
-                case 2:
+    public static void menu(String[][] registro) {
+        int opcion;
+        printMenu();
+        opcion = leerOpcion();
+        opciones(opcion, registro);
+    }
+    public static void opciones (int opcion, String[] registro ) {
+        switch (opcion) {
+            case 1:
+                if(hayCupo(registro)) {
+                    int indiceDisponible = obtenerUltimoEspacio(registro);
+                    String nombre;
+                    String Estadocivil;
+                    String edad;
+                    nombre = new Scanner(System.in).nextLine();
+                    Estadocivil = new Scanner(System.in).nextLine();
+                    edad = new Scanner(System.in).nextLine();// cambio del tipo de variable que es la edad ahora es una string
+                    registro[indiceDisponible][0] = nombre;
+                    registro[indiceDisponible][1] = Estadocivil;
+                    registro[indiceDisponible][2] = edad;
+                    System.out.println("Persona agregada.");
+                } else {
+                    System.out.println("No hay cupo.");
+                }
+                break;
+            case 2:
+                int mayoresDeEdad = 0;
+                for (String [] persona : registro) {
+                    if (persona[2] >= 18){//no habia nada dentro del if
+                        System.out.println("Personas mayores de edad" + persona[2]);
 
-                    break;
-                case 3:
+                    }
+                }
+                System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
+                break;
+            case 3:
+                int menoresDeEdad = 0;
+                int queSera = obtenerUltimoEspacio(registro);
+                for (int i = 0; i < queSera; i++) {
+                    if (registro[i][2] < 18) menoresDeEdad++;
+                }
+                System.out.println("Hay " + menoresDeEdad + " menores de edad.");
+                break;
+            case 4:
+                int mmmm = 0;//mmm no es una variable que describa lo que es
+                for (double [] persona : registro) {
+                    if (persona[2] >= 60 && persona[1].equals("casado/a")) {
+                        mmmm++;
+                    } else if(persona[2] >= 65 && persona[1].equals("soltero/a")) {
+                        mmmm++;
+                    }
+                }
+                System.out.println("Hay " + mmmm + " personas de tercera edad");
+                break;
+            case 5:
+                int c = 0;
+                int d = 0;
+                for(double[] persona : registro) {
+                    if(persona[1].equals("casado/a")) {
+                        c++;
+                    } else if(persona[1].equals("soltero/a")) {
+                        d++;
+                    }
+                }
+                System.out.println("Hay " + d + " casados/as.");
+                System.out.println("Hay " + c + " solteros/as.");
+                break;
+            case 6:
+                System.out.println("Programa finalizado");
 
-                    break;
-                case 4:
-                    break;
-                case 5:
-                default:
+                break;
+            default:
 
 
-            }
         }
-        if(a == 1) {
-            if(hayCupo(registro)) {
-                int indiceDisponible = obtenerUltimoEspacio(registro);
-                String nombre;
-                String Estadocivil;
-                int edad;
-                while(true) {
-                    try {
-                        nombre = new Scanner(System.in).nextLine();
-                    } catch (InputMismatchException e) {
-                        System.err.println("Opción inválida");
-                        continue;
-                    }
-                    break;
-                }
-                while(true) {
-                    try {
-                        Estadocivil = new Scanner(System.in).nextLine();
-                    } catch (InputMismatchException e) {
-                        System.err.println("Opción inválida");
-                        continue;
-                    }
-                    break;
-                }
-                while(true) {
-                    try {
-                        edad = new Scanner(System.in).nextLine();
-                    } catch (InputMismatchException e) {
-                        System.err.println("Opción inválida");
-                        continue;
-                    }
-                    break;
-                }
-                registro[indiceDisponible][0] = nombre;
-                registro[indiceDisponible][1] = Estadocivil;
-                registro[indiceDisponible][2] = edad;
-                System.out.println("Persona agregada.");
-            } else {
-                System.out.println("No hay cupo.");
-            }
-        } else if(a == 2) {
-            int mayoresDeEdad = 0;
-            for (double [] persona : registro) {
-                if (persona[2] >= 18) mayoresDeEdad++;
-            }
-            System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
-        } else if(a == 3) {
-            int menoresDeEdad = 0;
-            int queSera = obtenerUltimoEspacio(registro);
-            for (int i = 0; i < queSera; i++) {
-                if (registro[i][2] < 18) menoresDeEdad++;
-            }
-            System.out.println("Hay " + menoresDeEdad + " menores de edad.");
-        } else if(a == 4) {
-            int mmmm = 0;
-            for (double [] persona : registro) {
-                if (persona[2] >= 60 && persona[1].equals("casado/a")) {
-                    mmmm++;
-                } else if(persona[2] >= 65 && persona[1].equals("soltero/a")) {
-                    mmmm++;
-                }
-            }
-            System.out.println("Hay " + mmmm + " personas de tercera edad");
-        } else if(a == 5) {
-            int c = 0;
-            int d = 0;
-            for(double[] persona : registro) {
-                if(persona[1].equals("casado/a")) {
-                    c++;
-                } else if(persona[1].equals("soltero/a")) {
-                    d++;
-                }
-            }
-            System.out.println("Hay " + d + " casados/as.");
-            System.out.println("Hay " + c + " solteros/as.");
-        } else if(a == 6) {
-            System.out.println("Programa finalizado");
-        }
-    }while (a == 6);
+        //}while (a == 6);// como se va a cumplir que a sea = 6 si se supone que el a es para la opciones
     public static int obtenerUltimoEspacio(double [][] registro) {
         return registro.length - opa(registro);
     }
@@ -140,4 +129,4 @@ public class Registro {
         }
         return 0;
     }
-}
+}}
