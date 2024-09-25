@@ -17,4 +17,5 @@ Errores en el codigo::
 3- errores logicos dentro de bucles y/o condicionales
 4-Nombres de metodos poco descriptibos como opa
 5- no se utiliza el mismo tipo de variable al declarr la matriz de registro
+6- no se cierran los metodos con las llaves {}
 
